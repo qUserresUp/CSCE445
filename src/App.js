@@ -7,8 +7,15 @@ import 'typeface-roboto';
 function App() {
 
   const [uploaded, setUploaded] = useState(false);
+  const [mp3Link, setMp3Link] = useState(null);
+  const [uploadedImg, setUploadedImg] = useState(null);
 
-  const showPage = uploaded ? <Musicplay /> : <Upload setUploaded={setUploaded}/> 
+  const showPage = uploaded ? <Musicplay mp3Link={mp3Link} uploadedImg={uploadedImg}/> : 
+  <Upload 
+    setUploaded={setUploaded} 
+    setMp3Link={setMp3Link}
+    setUploadedImg={setUploadedImg}
+  /> 
   return (
     <div className="App">
       {showPage}

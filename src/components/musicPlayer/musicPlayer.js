@@ -9,8 +9,6 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
-import tamu from '../../images/tamu.jpg';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -37,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MediaControlCard() {
+export default function MediaControlCard(props) {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -53,20 +51,20 @@ export default function MediaControlCard() {
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton aria-label="previous">
+          <IconButton aria-label="previous" disabled>
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
           </IconButton>
-          <IconButton aria-label="play/pause">
+          <IconButton aria-label="play/pause" onClick={props.togglePlay}>
             <PlayArrowIcon className={classes.playIcon} />
           </IconButton>
-          <IconButton aria-label="next">
+          <IconButton aria-label="next" disabled>
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
           </IconButton>
         </div>
       </div>
       <CardMedia
         className={classes.cover}
-        image={tamu}
+        image={props.uploadedImg}
         title="The Song of TAMU"
       />
     </Card>

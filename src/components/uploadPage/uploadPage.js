@@ -17,7 +17,20 @@ const UploadPage = props => {
     const [isLoading, setIsLoading] = useState(false);
 
     const fileSelectedHandler = event => {
-        setFile(event.target.files[0]);
+
+// TODO: try to show a preview of the image
+
+        let reader = new FileReader();
+        let selecteeFile = event.target.files[0];
+
+        reader.onloadend = () => {
+            setFile(selecteeFile);
+            props.setUploadedImg(reader.result)
+        }
+        reader.readAsDataURL(selecteeFile);
+
+        // setFile(event.target.files[0]);
+
     }
 
     const fileUploadHandler = () => {
@@ -25,21 +38,26 @@ const UploadPage = props => {
         // set loading to true
         setIsLoading(true);
 
-        // const fd = new FormData();
-        // fd.append('image', file, file.name)
-        // axios.post('', fd)
-        // .then(res => {
-        //     // do something
-        //     console.log(res);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // })
+        const fd = new FormData();
+        fd.append('image', file, file.name)
+    
+        axios.post('https://hun-backend.appspot.com/api/v1/convert/', {image:fd})
+        .then(res => {
+            // do something
+            console.log(res);
+            const mp3Link = res.freesoundSoundInstance.previews['preview-hq-mp3'];
+            props.setUploaded(true);
+            props.setMp3Link(mp3Link);
 
-        delay(3000)
-        .then(() => {
-            props.setUploaded(true)
-        });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+        // delay(3000)
+        // .then(() => {
+        //     props.setUploaded(true)
+        // });
         
     }
 
