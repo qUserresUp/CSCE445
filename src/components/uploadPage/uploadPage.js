@@ -39,13 +39,16 @@ const UploadPage = props => {
         setIsLoading(true);
 
         const fd = new FormData();
-        fd.append('image', file, file.name)
+        fd.append('image', file, file.fileName);
     
-        axios.post('https://hun-backend.appspot.com/api/v1/convert/', {image:fd})
+        // axios.post('https://hun-backend.appspot.com/api/v1/convert/', {image:fd})
+        // http://localhost:3469/api/v1/convert/
+        // https://hun-backend.appspot.com/api/v1/convert/
+        axios.post('https://hun-backend.appspot.com/api/v1/convert/', fd)
         .then(res => {
             // do something
             console.log(res);
-            const mp3Link = res.freesoundSoundInstance.previews['preview-hq-mp3'];
+            const mp3Link = res.data.freesoundSoundInstance.previews['preview-hq-mp3'];
             props.setUploaded(true);
             props.setMp3Link(mp3Link);
 
