@@ -48,9 +48,9 @@ const UploadPage = props => {
         .then(res => {
             // do something
             console.log(res);
-            const mp3Link = res.data.freesoundSoundInstance.previews['preview-hq-mp3'];
-            props.setUploaded(true);
+            const mp3Link = res.data;
             props.setMp3Link(mp3Link);
+            props.setUploaded(true); // in promises, each updates are not batched together
 
         })
         .catch(err => {

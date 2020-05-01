@@ -12,6 +12,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    justifyContent: 'space-between'
   },
   details: {
     display: 'flex',
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: 151,
+
   },
   controls: {
     display: 'flex',
@@ -44,11 +46,9 @@ export default function MediaControlCard(props) {
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            The Song of TAMU
+            The Song of {props.label}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            TAMU Student
-          </Typography>
+          
         </CardContent>
         <div className={classes.controls}>
           <IconButton aria-label="previous" disabled>

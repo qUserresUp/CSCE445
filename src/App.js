@@ -10,6 +10,8 @@ function App() {
   const [mp3Link, setMp3Link] = useState(null);
   const [uploadedImg, setUploadedImg] = useState(null);
 
+  console.log(mp3Link);
+  
   const showPage = uploaded ? <Musicplay mp3Link={mp3Link} uploadedImg={uploadedImg}/> : 
   <Upload 
     setUploaded={setUploaded} 
