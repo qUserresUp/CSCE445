@@ -46,7 +46,7 @@ export default function MediaControlCard(props) {
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            The Song of {props.label}
+            The Sound of {props.label}
           </Typography>
           
         </CardContent>
